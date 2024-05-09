@@ -6,7 +6,7 @@ public class Contact {
     private String emailAddress;
 
     public Contact(String name, String phoneNumber, String emailAddress) {
-        this.name = name;
+        this.name = validateName(name);
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
     }
@@ -33,5 +33,10 @@ public class Contact {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    private String validateName (String name) {
+        if(name == null) throw new IllegalArgumentException("Invalid Name");
+        return name;
     }
 }
