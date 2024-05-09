@@ -36,7 +36,7 @@ public class Contact {
     }
 
     private String validateName (String name) {
-        if(name == null) throw new IllegalArgumentException("Invalid Name");
+        if(name == null || name.trim().isEmpty()) throw new IllegalArgumentException("Invalid Name");
         return name;
     }
 }
