@@ -73,6 +73,56 @@ public class ContactTest {
         }
     }
 
+    @Nested
+    @DisplayName("Contact phoneNumber Tests")
+    class ContactPhoneNumberTests{
+        String testName;
+        String testEmail;
+        @BeforeEach
+        void setUp (){
+            testName = "James";
+            testEmail = "testEmail@gmail.com";
+        }
 
+        @Test
+        @DisplayName("test that checks that when in the constructor the phoneNumber is null it throws IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsNull(){
+            // Arrange
+            String testPhoneNumber = null;
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
+        }
+
+        @Test
+        @DisplayName("test that checks that when in the constructor phoneNumber is an empty string, it throws IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsEmptyString(){
+            // Arrange
+            String testPhoneNumber = " ";
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
+        }
+
+        @Test
+        @DisplayName("test that checks that phoneNumber only should contain digits if it doesn't, it should throw IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsNotOnlyDigits(){
+            // Arrange
+            String testPhoneNumber = "o7123456789";
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
+        }
+
+        @Test
+        @DisplayName("test that checks that phoneNumber length shouldn't be longer then 15 if it is throws IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberLengthIsGreaterThen15(){
+            // Arrange
+            String testPhoneNumber = "0712345678921313131231";
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
+        }
+    }
 
 }

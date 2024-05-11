@@ -9,7 +9,7 @@ public class Contact {
 
     public Contact(String name, String phoneNumber, String emailAddress) {
         this.name = validateName(name);
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = validatePhoneNumber(phoneNumber);
         this.emailAddress = emailAddress;
     }
 
@@ -39,9 +39,16 @@ public class Contact {
 
     private String validateName (String name) {
 
-        if(name == null || validateString(name) || !Pattern.matches("[a-zA-Z]+", name)) throw new IllegalArgumentException("Invalid Name");
+        if(name == null || validateString(name) || !Pattern.matches("[a-zA-Z\\s]+", name)) throw new IllegalArgumentException("Invalid Name");
         return name;
     }
+
+    private String validatePhoneNumber (String phoneNumber){
+        if(phoneNumber == null || validateString(phoneNumber) || !Pattern.matches("[\\+0-9\\s]+", phoneNumber)
+                || phoneNumber.length() > 15) throw new IllegalArgumentException("Invalid Phone Number");
+        return phoneNumber.trim();
+    }
+
 
     private boolean validateString (String string){
         return string.trim().isEmpty();
