@@ -43,7 +43,7 @@ public class ContactTest {
         }
 
         @Test
-        @DisplayName("test that checks that when in the constructor name is null it throws IllegalArgumentException")
+        @DisplayName("test that checks that when in the constructor the name is null it throws IllegalArgumentException")
         void testConstructorThrowsIllegalArgumentExceptionWhenNameIsNull(){
             // Arrange
             String testName = null;
@@ -53,7 +53,7 @@ public class ContactTest {
         }
 
         @Test
-        @DisplayName("test that checks that when in the constructor name is empty string it throws IllegalArgumentException")
+        @DisplayName("test that checks that when in the constructor name is an empty string, it throws IllegalArgumentException")
         void testConstructorThrowsIllegalArgumentExceptionWhenNameIsEmptyString(){
             // Arrange
             String testName = " ";
@@ -61,6 +61,18 @@ public class ContactTest {
             // Assert
             assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
         }
+
+        @Test
+        @DisplayName("test that checks that name only should contain letters if it doesn't, it should throw IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenNameIsNotOnlyLetters(){
+            // Arrange
+            String testName = "Fabio1";
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
+        }
     }
+
+
 
 }

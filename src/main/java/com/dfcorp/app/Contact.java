@@ -1,5 +1,7 @@
 package com.dfcorp.app;
 
+import java.util.regex.Pattern;
+
 public class Contact {
     private String name;
     private String phoneNumber;
@@ -36,7 +38,12 @@ public class Contact {
     }
 
     private String validateName (String name) {
-        if(name == null || name.trim().isEmpty()) throw new IllegalArgumentException("Invalid Name");
+
+        if(name == null || validateString(name) || !Pattern.matches("[a-zA-Z]+", name)) throw new IllegalArgumentException("Invalid Name");
         return name;
+    }
+
+    private boolean validateString (String string){
+        return string.trim().isEmpty();
     }
 }
