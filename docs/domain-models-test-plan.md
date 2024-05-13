@@ -6,6 +6,11 @@ As a user\
 I want to be able to add a contact to my address book\
 So that I can store my contacts
 
+| Object      | Properties             | Messages                     | Output |
+|-------------|------------------------|------------------------------|--------|
+| AddressBook | -ArrayList < Contact > | +addContact(Contact contact) | void   |
+
+
 ### Tests user story 1
 - **Test 1.1:** Add a Contact and see that the ArrayList size its increased by 1.
 - **Test 1.2:** Add a Contact and see that the ArrayList actually contains that contact.
@@ -17,6 +22,10 @@ So that I can store my contacts
 As a user\
 I want to be able to remove a contact from my address book\
 So that I can manage my contacts
+
+| Object      | Properties             | Messages                        | Output |
+|-------------|------------------------|---------------------------------|--------|
+| AddressBook | -ArrayList < Contact > | +removeContact(Contact contact) | void   |
 
 
 ### Tests user story 2
@@ -98,6 +107,15 @@ classDiagram
         -validatePhoneNumber(String phoneNumber) void
         -validateEmailAddress(String email) void
         -validateString(String string)$ void
+    }
+    
+    class Validator{
+        <<abstract>>
+        +isStringEmpty(String string)$ boolean
+        +isNull(String string)$ boolean
+        +matchesNameRegex(String name)$ boolean
+        +matchesPhoneNumberRegex(String name)$ boolean
+        +matchesEmailAddessRegex(String name)$ boolean
     }
     
 ```
