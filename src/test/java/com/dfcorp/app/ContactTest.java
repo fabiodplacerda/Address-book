@@ -1,9 +1,6 @@
 package com.dfcorp.app;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -122,6 +119,56 @@ public class ContactTest {
             // Act
             // Assert
             assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
+        }
+    }
+
+    @Nested
+    @DisplayName("Contact email tests")
+    class ContactEmailTests{
+
+        String testName;
+        String testPhoneNumber;
+
+        @BeforeEach
+        void setUp(){
+            testName = "James";
+            testPhoneNumber = "+4407123456789";
+        }
+
+        @AfterEach
+        void tierDown(){
+            testName = null;
+            testPhoneNumber = null;
+        }
+
+        @Test
+        @DisplayName("test that checks that when in the constructor the email is null it throws IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsNull(){
+            // Arrange
+            String testEmail = null;
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName,testPhoneNumber,testEmail));
+        }
+
+        @Test
+        @DisplayName("test that checks that when in the constructor the email is empty string it throws IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsEmptyString(){
+            // Arrange
+            String testEmail = " ";
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName,testPhoneNumber,testEmail));
+        }
+
+        @Test
+        @DisplayName("test that checks that when in the constructor the email doesn't follow the standardize email string it IllegalArgumentException")
+        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsNotValid(){
+            // Arrange
+            String testEmail = "testemail";
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName,testPhoneNumber,testEmail));
         }
     }
 

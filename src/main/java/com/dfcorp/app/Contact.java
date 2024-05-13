@@ -10,7 +10,7 @@ public class Contact {
     public Contact(String name, String phoneNumber, String emailAddress) {
         this.name = validateName(name);
         this.phoneNumber = validatePhoneNumber(phoneNumber);
-        this.emailAddress = emailAddress;
+        this.emailAddress = validateEmailAddress(emailAddress);
     }
 
     public String getName() {
@@ -47,6 +47,11 @@ public class Contact {
         if(phoneNumber == null || validateString(phoneNumber) || !Pattern.matches("[\\+0-9\\s]+", phoneNumber)
                 || phoneNumber.length() > 15) throw new IllegalArgumentException("Invalid Phone Number");
         return phoneNumber.trim();
+    }
+
+    private String validateEmailAddress (String emailAddress){
+        if(emailAddress == null || validateString(emailAddress) || !Pattern.matches(".+@.+", emailAddress)) throw new IllegalArgumentException("Invalid Email Address");
+        return emailAddress;
     }
 
 
