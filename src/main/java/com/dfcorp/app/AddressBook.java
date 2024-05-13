@@ -19,6 +19,16 @@ public class AddressBook {
         this.contactList.remove(contact);
     }
 
+    public ArrayList searchContact (String name){
+        ArrayList <Contact> contactsToReturn = new ArrayList<>();
+        for(Contact contact : contactList){
+            if(contact.getName().equals(name)){
+                 contactsToReturn.add(contact);
+            };
+        }
+        return contactsToReturn;
+    }
+
     public ArrayList<Contact> getContactList() {
         return contactList;
     }

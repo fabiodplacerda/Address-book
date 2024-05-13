@@ -2,8 +2,11 @@ package com.dfcorp.app;
 
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
 public class AddressBookTest {
@@ -116,8 +119,54 @@ public class AddressBookTest {
             testAddressBook.removeContact(mockContact2);
             byte actual = (byte) testAddressBook.getContactList().size();
             // Assert
-            assertEquals(expected,actual);
+            assertEquals(expected, actual);
 
         }
+    }
+
+    @Nested
+    @DisplayName("Search a contact")
+    class SearchAContact {
+        AddressBook testAddressBook;
+
+        @BeforeEach
+        void setUp() {
+            testAddressBook = new AddressBook();
+
+        }
+
+        @AfterEach
+        void tierDown() {
+            testAddressBook = null;
+        }
+
+        @Test
+        @DisplayName("test that checks that when a Contact its searched by name if it exist it should return that contact")
+        void testSearchContactByNameAndHaveAContactReturned() {
+            // Arrange
+            Contact mockContact = mock(Contact.class);
+            when(mockContact.getName()).thenReturn("James");
+
+            ArrayList <Contact> expected = new ArrayList<>();
+            expected.add(mockContact);
+
+            testAddressBook.addContact(mockContact);
+            // Act
+            ArrayList <Contact> actual = testAddressBook.searchContact("James");
+            // Assert
+            assertEquals(actual, expected);
+        }
+
+        @Test
+        @DisplayName("test that checks that when a Contact its searched by name if it exist it should return that contact")
+        void testSearchContactByNameAndIfNoMatchReturnsAnEmptyArrayList() {
+            // Arrange
+            ArrayList <Contact> expected = new ArrayList<>();
+            // Act
+            ArrayList <Contact> actual = testAddressBook.searchContact("James");
+            // Assert
+            assertEquals(actual, expected);
+        }
+
     }
 }
