@@ -6,16 +6,15 @@ As a user\
 I want to be able to add a contact to my address book\
 So that I can store my contacts
 
-| Object      | Properties             | Messages                     | Output |
-|-------------|------------------------|------------------------------|--------|
-| AddressBook | -ArrayList < Contact > | +addContact(Contact contact) | void   |
-
+| Object      | Properties                         | Messages                     | Output |
+|-------------|------------------------------------|------------------------------|--------|
+| AddressBook | -ArrayList < Contact > contactList | +addContact(Contact contact) | void   |
 
 ### Tests user story 1
+
 - **Test 1.1:** Add a Contact and see that the ArrayList size its increased by 1.
 - **Test 1.2:** Add a Contact and see that the ArrayList actually contains that contact.
 - **Test 1.3:** A null Contact should not be added to the ArrayList.
-
 
 ## User Story 2: Remove Contact
 
@@ -23,15 +22,15 @@ As a user\
 I want to be able to remove a contact from my address book\
 So that I can manage my contacts
 
-| Object      | Properties             | Messages                        | Output |
-|-------------|------------------------|---------------------------------|--------|
-| AddressBook | -ArrayList < Contact > | +removeContact(Contact contact) | void   |
-
+| Object      | Properties                         | Messages                        | Output |
+|-------------|------------------------------------|---------------------------------|--------|
+| AddressBook | -ArrayList < Contact > contactList | +removeContact(Contact contact) | void   |
 
 ### Tests user story 2
+
 - **Test 2.1:** Remove a Contact and see that the ArrayList size decreases by 1.
 - **Test 2.2:** Remove a Contact and see its actual remove from the ArrayList.
-- **Test 2.3:** If the contact doesn't exist in the ArrayList nothing should happen.
+- **Test 2.3:** If the contact doesn't exist in the ArrayList, nothing should happen.
 
 ## User Story 3: Search Contact
 
@@ -39,9 +38,14 @@ As a user\
 I want to be able to search for a contact by name\
 So that I can select a specific person in my address book
 
+| Object      | Properties                         | Messages                    | Output                |
+|-------------|------------------------------------|-----------------------------|-----------------------|
+| AddressBook | -ArrayList < Contact > contactList | +searchContact(String name) | ArrayList < Contact > |
+
 ### Tests user story 3
+
 - **Test 3.1:** search for a Contact by name and as a result should be able to see the contact and its details.
-- **Test 3.2:** searching for an inexisting contact should have returned a feedback message.
+- **Test 3.2:** searching for an in-existing contact should have returned an Empty ArrayList.
 
 ## User Story 4: Edit Contact
 
@@ -73,27 +77,27 @@ So that I can see all of my contacts that I have stored
 
 ### Test user story 6
 
-- **Test 6.1:** View all the contacts in the address book should return all contacts in the ArraysList. 
+- **Test 6.1:** View all the contacts in the address book should return all contacts in the ArraysList.
 - **Test 6.2:** Try to view all contacts but if ArrayList is empty, it should return a message to the user.
 
 ## User Story 7: Console Interaction
 
 As a user\
 I want to be able to interact with this application by using the console interface\
-So that I can use the application 
+So that I can use the application
 
 ```mermaid
 classDiagram
-    class AddressBook{
-       -contactList ArrayList <Contact>
-       +addContact(Contact contact) void
-       +removeContact (Contact contact) Void
-       +editContact (Contact contact) void
-       +searchContact (String name) Contact
-       +getContactList() ArrayList <Contact>
+    class AddressBook {
+        -contactList ArrayList < Contact >
+        +addContact(Contact contact) void
+        +removeContact(Contact contact) Void
+        +editContact(Contact contact) void
+        +searchContact(String name) ArrayList < Contact >
+        +getContactList() ArrayList < Contact >
     }
-    
-    class Contact{
+
+    class Contact {
         -name String
         -phoneNumber String
         -emailAddress String
@@ -106,10 +110,9 @@ classDiagram
         -validateName(String name) void
         -validatePhoneNumber(String phoneNumber) void
         -validateEmailAddress(String email) void
-        -validateString(String string)$ void
     }
-    
-    class Validator{
+
+    class Validator {
         <<abstract>>
         +isStringEmpty(String string)$ boolean
         +isNull(String string)$ boolean
@@ -117,7 +120,7 @@ classDiagram
         +matchesPhoneNumberRegex(String name)$ boolean
         +matchesEmailAddessRegex(String name)$ boolean
     }
-    
+
 ```
 
 
