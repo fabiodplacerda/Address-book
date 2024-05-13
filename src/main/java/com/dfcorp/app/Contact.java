@@ -1,6 +1,6 @@
 package com.dfcorp.app;
 
-import java.util.regex.Pattern;
+import com.dfcorp.app.utils.Validator;
 
 public class Contact {
     private String name;
@@ -38,24 +38,19 @@ public class Contact {
     }
 
     private String validateName (String name) {
-
-        if(name == null || validateString(name) || !Pattern.matches("[a-zA-Z\\s]+", name)) throw new IllegalArgumentException("Invalid Name");
+        if(Validator.isNull(name)|| Validator.isStringEmpty(name) || !Validator.matchesNameRegex(name)) throw new IllegalArgumentException("Invalid Name");
         return name;
     }
 
     private String validatePhoneNumber (String phoneNumber){
-        if(phoneNumber == null || validateString(phoneNumber) || !Pattern.matches("[\\+0-9\\s]+", phoneNumber)
+        if( Validator.isNull(phoneNumber)|| Validator.isStringEmpty(phoneNumber) || !Validator.matchesPhoneNumberRegex(phoneNumber)
                 || phoneNumber.length() > 15) throw new IllegalArgumentException("Invalid Phone Number");
         return phoneNumber.trim();
     }
 
     private String validateEmailAddress (String emailAddress){
-        if(emailAddress == null || validateString(emailAddress) || !Pattern.matches(".+@.+", emailAddress)) throw new IllegalArgumentException("Invalid Email Address");
+        if(Validator.isNull(emailAddress) || Validator.isStringEmpty(emailAddress) ||!Validator.matchesEmailAddressRegex(emailAddress)) throw new IllegalArgumentException("Invalid Email Address");
         return emailAddress;
     }
 
-
-    private boolean validateString (String string){
-        return string.trim().isEmpty();
-    }
 }
