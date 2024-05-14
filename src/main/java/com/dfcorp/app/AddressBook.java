@@ -1,6 +1,7 @@
 package com.dfcorp.app;
 
 import com.dfcorp.app.utils.Validator;
+
 import java.util.ArrayList;
 
 
@@ -12,6 +13,9 @@ public class AddressBook {
 
     public void addContact(Contact contact) {
         if (Validator.isContactNull(contact)) throw new IllegalArgumentException("Invalid Contact");
+        if (isDuplicate(contact))
+            throw new IllegalArgumentException("Phone number or Email, already exist in the address book. Please provide unique phone number or email");
+
         this.contactList.add(contact);
     }
 
@@ -20,8 +24,10 @@ public class AddressBook {
     }
 
     public void editContact(Contact contact, String newName, String newPhoneNumber, String newEmailAddress) {
-        if(Validator.isNull(newName) || Validator.isNull(newPhoneNumber) || Validator.isNull(newEmailAddress)) throw new IllegalArgumentException("Invalid values");
-        if(isDuplicate(newPhoneNumber,newEmailAddress)) throw new IllegalArgumentException("The contacts in address book must be unique");
+        if (Validator.isNull(newName) || Validator.isNull(newPhoneNumber) || Validator.isNull(newEmailAddress))
+            throw new IllegalArgumentException("Invalid values");
+        if (isDuplicate(newPhoneNumber, newEmailAddress))
+            throw new IllegalArgumentException("The contacts in address book must be unique");
         for (Contact contactInArrayList : contactList) {
             if (contact.equals(contactInArrayList)) {
                 contact.setName(newName);
@@ -38,7 +44,6 @@ public class AddressBook {
             if (contact.getName().equals(name)) {
                 contactsToReturn.add(contact);
             }
-            ;
         }
         return contactsToReturn;
     }
@@ -47,13 +52,17 @@ public class AddressBook {
         return contactList;
     }
 
-    private boolean isDuplicate (String phoneNumber, String emailAddress){
-        for( Contact contactInList : contactList){
-            if(contactInList.getPhoneNumber().equals(phoneNumber) || contactInList.getEmailAddress().equals(emailAddress)){
+    private boolean isDuplicate(String phoneNumber, String emailAddress) {
+        for (Contact contactInList : contactList) {
+            if (contactInList.getPhoneNumber().equals(phoneNumber) || contactInList.getEmailAddress().equals(emailAddress)) {
                 return true;
             }
         }
         return false;
+    }
+
+    private boolean isDuplicate(Contact contact) {
+        return isDuplicate(contact.getPhoneNumber(), contact.getEmailAddress());
     }
 
 

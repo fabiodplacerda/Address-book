@@ -61,6 +61,36 @@ public class AddressBookTest {
     }
 
     @Nested
+    @DisplayName("Unique Contacts")
+    class UniqueContacts {
+
+
+        @Test
+        @DisplayName("test that checks that when trying to add a duplicate contact it throws an error")
+        void testDuplicateContactThrowsError() {
+            // Arrange
+            String testName = "Fabio";
+            String testPhoneNumber = "+4407812394921";
+            String testEmailAddress = "test@email.com";
+
+            Contact mockContact = mock(Contact.class);
+            when(mockContact.getName()).thenReturn(testName);
+            when(mockContact.getPhoneNumber()).thenReturn(testPhoneNumber);
+            when(mockContact.getEmailAddress()).thenReturn(testEmailAddress);
+
+            Contact mockContact2 = mock(Contact.class);
+            when(mockContact2.getName()).thenReturn(testName);
+            when(mockContact2.getPhoneNumber()).thenReturn(testPhoneNumber);
+            when(mockContact2.getEmailAddress()).thenReturn(testEmailAddress);
+
+            testAddressBook.addContact(mockContact);
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> testAddressBook.addContact(mockContact2));
+        }
+    }
+
+    @Nested
     @DisplayName("Remove a contact")
     class RemoveAContact {
         Contact mockContact;
@@ -93,11 +123,16 @@ public class AddressBookTest {
         @DisplayName("test that checks that when the ArrayList has multiple Contacts the one you remove it's actually removed")
         void testRemoveContactWhenContactListHasMultipleContacts() {
             // Arrange
+            Contact mockContact1 = mock(Contact.class);
+            when(mockContact1.getPhoneNumber()).thenReturn("+44782121212");
+            when(mockContact1.getEmailAddress()).thenReturn("email1@email.com");
+
             Contact mockContact2 = mock(Contact.class);
-            Contact mockContact3 = mock(Contact.class);
-            testAddressBook.addContact(mockContact);
+            when(mockContact2.getPhoneNumber()).thenReturn("+44782121213");
+            when(mockContact2.getEmailAddress()).thenReturn("email@email.com");
+
+            testAddressBook.addContact(mockContact1);
             testAddressBook.addContact(mockContact2);
-            testAddressBook.addContact(mockContact3);
             // Act
             testAddressBook.removeContact(mockContact2);
             // Assert
