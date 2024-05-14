@@ -1,5 +1,7 @@
 package com.dfcorp.app.utils;
 
+import com.dfcorp.app.Contact;
+
 import java.util.regex.Pattern;
 
 public abstract class Validator {
@@ -21,5 +23,9 @@ public abstract class Validator {
 
     public static boolean matchesEmailAddressRegex (String emailAddress){
         return  Pattern.matches(".+@.+", emailAddress);
+    }
+
+    public static boolean isContactNull (Contact contact){
+        return contact == null;
     }
 }
