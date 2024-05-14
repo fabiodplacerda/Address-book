@@ -5,8 +5,7 @@ import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 public class AddressBookTest {
@@ -64,18 +63,15 @@ public class AddressBookTest {
     @Nested
     @DisplayName("Remove a contact")
     class RemoveAContact {
-        AddressBook testAddressBook;
         Contact mockContact;
 
         @BeforeEach
         void setUp() {
-            testAddressBook = new AddressBook();
             mockContact = mock(Contact.class);
         }
 
         @AfterEach
         void tierDown() {
-            testAddressBook = null;
             mockContact = null;
         }
 
@@ -127,18 +123,6 @@ public class AddressBookTest {
     @Nested
     @DisplayName("Search a contact")
     class SearchAContact {
-        AddressBook testAddressBook;
-
-        @BeforeEach
-        void setUp() {
-            testAddressBook = new AddressBook();
-
-        }
-
-        @AfterEach
-        void tierDown() {
-            testAddressBook = null;
-        }
 
         @Test
         @DisplayName("test that checks that when a Contact its searched by name if it exist it should return that contact")
@@ -147,12 +131,12 @@ public class AddressBookTest {
             Contact mockContact = mock(Contact.class);
             when(mockContact.getName()).thenReturn("James");
 
-            ArrayList <Contact> expected = new ArrayList<>();
+            ArrayList<Contact> expected = new ArrayList<>();
             expected.add(mockContact);
 
             testAddressBook.addContact(mockContact);
             // Act
-            ArrayList <Contact> actual = testAddressBook.searchContact("James");
+            ArrayList<Contact> actual = testAddressBook.searchContact("James");
             // Assert
             assertEquals(actual, expected);
         }
@@ -161,12 +145,88 @@ public class AddressBookTest {
         @DisplayName("test that checks that when a Contact its searched by name if it exist it should return that contact")
         void testSearchContactByNameAndIfNoMatchReturnsAnEmptyArrayList() {
             // Arrange
-            ArrayList <Contact> expected = new ArrayList<>();
+            ArrayList<Contact> expected = new ArrayList<>();
             // Act
-            ArrayList <Contact> actual = testAddressBook.searchContact("James");
+            ArrayList<Contact> actual = testAddressBook.searchContact("James");
             // Assert
             assertEquals(actual, expected);
         }
 
+    }
+
+    @Nested
+    @DisplayName("Edit a contact")
+    class EditAContact {
+        Contact mockContact;
+        String testPhoneNumber;
+        String testEmailAddress;
+
+        @BeforeEach
+        void setUp() {
+            testPhoneNumber = "+447911123456";
+            testEmailAddress = "test@email.com";
+
+            mockContact = mock(Contact.class);
+            when(mockContact.getName()).thenReturn("Fabio");
+            when(mockContact.getPhoneNumber()).thenReturn(testPhoneNumber);
+            when(mockContact.getEmailAddress()).thenReturn(testEmailAddress);
+            testAddressBook.addContact(mockContact);
+
+        }
+
+        @AfterEach
+        void tierDown() {
+            mockContact = null;
+            testPhoneNumber = null;
+            testEmailAddress = null;
+        }
+
+        @Test
+        @DisplayName("test that checks that when you edit a contact with valid information it changes that contact")
+        void testEditContactWithValidInformationAndItSavesThatContact() {
+            // Arrange
+            String testName = "Fabio";
+            String newTestPhone = "+4407812345677";
+            String newEmailAddress = "test2@gmail.com";
+            // Act
+            testAddressBook.editContact(mockContact, testName, newTestPhone, newEmailAddress);
+            when(mockContact.getName()).thenReturn(testName);
+            when(mockContact.getPhoneNumber()).thenReturn(newTestPhone);
+            when(mockContact.getEmailAddress()).thenReturn(newEmailAddress);
+            // Assert
+            assertAll(
+                    () -> assertEquals(testName, mockContact.getName()),
+                    () -> assertEquals(newTestPhone, mockContact.getPhoneNumber()),
+                    () -> assertEquals(newEmailAddress, mockContact.getEmailAddress())
+            );
+        }
+
+        @Test
+        @DisplayName("test that checks that when you edit a contact with invalid information it changes that contact")
+        void testEditContactWithInvalidInformationAndItShouldThrowAError() {
+            // Arrange
+            String testName = null;
+            String testPhoneNumber = "+447911123456";
+            String testEmailAddress = "test@email.com";
+            // Act
+
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(mockContact, testName, testPhoneNumber, testEmailAddress));
+        }
+
+        @Test
+        @DisplayName("test that checks that when you edit a contact with a duplicate information it throws an error")
+        void testEditContactWithDuplicateInformationThrowsError() {
+            // Arrange
+            String testName = "Fabio";
+            Contact mockContact2 = mock(Contact.class);
+            when(mockContact2.getName()).thenReturn(testName);
+            when(mockContact2.getPhoneNumber()).thenReturn("+4407812345677");
+            when(mockContact2.getName()).thenReturn("test2@gmail.com");
+            testAddressBook.addContact(mockContact2);
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(mockContact2, testName, testPhoneNumber, testEmailAddress));
+        }
     }
 }
