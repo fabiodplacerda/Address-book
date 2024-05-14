@@ -18,7 +18,7 @@ public class Contact {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = validateName(name);
     }
 
     public String getPhoneNumber() {
@@ -26,7 +26,7 @@ public class Contact {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = validatePhoneNumber(phoneNumber);
     }
 
     public String getEmailAddress() {
@@ -34,7 +34,7 @@ public class Contact {
     }
 
     public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+        this.emailAddress = validateEmailAddress(emailAddress);
     }
 
     private String validateName (String name) {
@@ -51,6 +51,15 @@ public class Contact {
     private String validateEmailAddress (String emailAddress){
         if(Validator.isNull(emailAddress) || Validator.isStringEmpty(emailAddress) ||!Validator.matchesEmailAddressRegex(emailAddress)) throw new IllegalArgumentException("Invalid Email Address");
         return emailAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
     }
 
 }
