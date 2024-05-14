@@ -6,9 +6,10 @@ As a user\
 I want to be able to add a contact to my address book\
 So that I can store my contacts
 
-| Object      | Properties                         | Messages                     | Output |
-|-------------|------------------------------------|------------------------------|--------|
-| AddressBook | -ArrayList < Contact > contactList | +addContact(Contact contact) | void   |
+| Object      | Properties                         | Messages                        | Output  |
+|-------------|------------------------------------|---------------------------------|---------|
+| AddressBook | -ArrayList < Contact > contactList | +addContact(Contact contact)    | void    |
+| Validator   |                                    | +isContactNull(Contact contact) | boolean |
 
 ### Tests user story 1
 
@@ -53,11 +54,15 @@ As a user\
 I want to be able to edit a contact's details\
 So that I can update my contacts
 
+| Object      | Properties                         | Messages                                                                                     | Output            |
+|-------------|------------------------------------|----------------------------------------------------------------------------------------------|-------------------|
+| AddressBook | -ArrayList < Contact > contactList | +editContact(Contact contact) <br/>    +isDuplicate(String phoneNumber, String emailAddress) | void <br/>boolean |
+
 ### Tests user story 4
 
 - **Test 4.1:** Edit a contact with valid information, and it should change the contact.
 - **Test 4.2:** Edit a contact with non-valid information, and it should not alter the contact.
-- **Test 4.3:** Edit a contact with missing information, should not alter that contact.
+- **Test 4.3:** Edit a contact with an already existing email or phone number it should not alter that contact.
 
 ## User Story 5: Unique Contacts
 
