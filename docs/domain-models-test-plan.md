@@ -7,7 +7,7 @@ I want to be able to add a contact to my address book\
 So that I can store my contacts
 
 | Object      | Properties                         | Messages                        | Output  |
-| ----------- | ---------------------------------- | ------------------------------- | ------- |
+|-------------|------------------------------------|---------------------------------|---------|
 | AddressBook | -ArrayList < Contact > contactList | +addContact(Contact contact)    | void    |
 | Validator   |                                    | +isContactNull(Contact contact) | boolean |
 
@@ -24,7 +24,7 @@ I want to have only unique contact\
 So that I don't have any duplicate contacts
 
 | Object      | Properties                         | Messages                    | Output                |
-| ----------- | ---------------------------------- | --------------------------- | --------------------- |
+|-------------|------------------------------------|-----------------------------|-----------------------|
 | AddressBook | -ArrayList < Contact > contactList | +searchContact(String name) | ArrayList < Contact > |
 
 ### Test user story 2
@@ -38,7 +38,7 @@ I want to be able to remove a contact from my address book\
 So that I can manage my contacts
 
 | Object      | Properties                         | Messages                        | Output |
-| ----------- | ---------------------------------- | ------------------------------- | ------ |
+|-------------|------------------------------------|---------------------------------|--------|
 | AddressBook | -ArrayList < Contact > contactList | +removeContact(Contact contact) | void   |
 
 ### Tests user story 3
@@ -54,7 +54,7 @@ I want to be able to search for a contact by name\
 So that I can select a specific person in my address book
 
 | Object      | Properties                         | Messages                    | Output                |
-| ----------- | ---------------------------------- | --------------------------- | --------------------- |
+|-------------|------------------------------------|-----------------------------|-----------------------|
 | AddressBook | -ArrayList < Contact > contactList | +searchContact(String name) | ArrayList < Contact > |
 
 ### Tests user story 4
@@ -69,7 +69,7 @@ I want to be able to edit a contact's details\
 So that I can update my contacts
 
 | Object      | Properties                         | Messages                                                                                  | Output            |
-| ----------- | ---------------------------------- | ----------------------------------------------------------------------------------------- | ----------------- |
+|-------------|------------------------------------|-------------------------------------------------------------------------------------------|-------------------|
 | AddressBook | -ArrayList < Contact > contactList | +editContact(Contact contact) <br/> +isDuplicate(String phoneNumber, String emailAddress) | void <br/>boolean |
 
 ### Tests user story 5
@@ -83,6 +83,10 @@ So that I can update my contacts
 As a user\
 I want to be able to view all my contacts in the address book\
 So that I can see all of my contacts that I have stored
+
+| Object      | Properties                         | Messages          | Output                            |
+|-------------|------------------------------------|-------------------|-----------------------------------|
+| AddressBook | -ArrayList < Contact > contactList | +getContactList() | ArrayList < Contact > contactList |
 
 ### Test user story 6
 
@@ -106,8 +110,8 @@ classDiagram
         +editContact(Contact contact, String newName, String newPhoneNumber, String newEmailAddress) void
         +searchContact(String name) ArrayList < Contact >
         +getContactList() ArrayList < Contact >
-        -isDuplicate (String phoneNumber, String emailAddress) boolean
-        -isDuplicate (Contact contact) boolean
+        -isDuplicate(String phoneNumber, String emailAddress) boolean
+        -isDuplicate(Contact contact) boolean
     }
 
     class Contact {
