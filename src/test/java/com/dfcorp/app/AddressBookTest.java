@@ -264,4 +264,46 @@ public class AddressBookTest {
             assertThrows(IllegalArgumentException.class, () -> testAddressBook.editContact(mockContact2, testName, testPhoneNumber, testEmailAddress));
         }
     }
+
+    @Nested
+    @DisplayName("View all Contacts")
+    class ViewAllContacts {
+
+        @Test
+        @DisplayName("test that checks that when getContactList is called it returns all the contacts in a contactList")
+        void testGetContactListReturnsAllContactsInTheList() {
+            // Arrange
+            ArrayList<Contact> expected = new ArrayList<>();
+            Contact mockContact = mock(Contact.class);
+            when(mockContact.getPhoneNumber()).thenReturn("+440782121234");
+            when(mockContact.getEmailAddress()).thenReturn("email@test.com");
+
+            Contact mockContact2 = mock(Contact.class);
+            when(mockContact2.getPhoneNumber()).thenReturn("+440782121231");
+            when(mockContact2.getEmailAddress()).thenReturn("emai2l@test.com");
+
+            expected.add(mockContact);
+            expected.add(mockContact2);
+
+            testAddressBook.addContact(mockContact);
+            testAddressBook.addContact(mockContact2);
+            // Act
+            ArrayList<Contact> actual = testAddressBook.getContactList();
+            // Assert
+            assertEquals(expected, actual);
+
+        }
+
+           @Test
+        @DisplayName("test that checks that when getContactList is called it returns empty contactList if the address doesn't contain any contacts")
+        void testGetContactListReturnsEmptyArrayListIfNoContactInAddressBook() {
+            // Arrange
+            ArrayList<Contact> expected = new ArrayList<>();
+            // Act
+            ArrayList<Contact> actual = testAddressBook.getContactList();
+            // Assert
+            assertEquals(expected, actual);
+
+        }
+    }
 }
