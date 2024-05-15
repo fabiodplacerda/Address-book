@@ -16,64 +16,72 @@ public class App {
 
         while (isRunning) {
             String output = UserInterface.menu();
+            switch (output) {
+                case "1":
 
-            if (output.equals("1")) {
+                    String[] userInputs = UserInterface.addCommand();
 
-                String[] userInputs = UserInterface.addCommand();
-
-                try {
-                    addressBook.addContact(new Contact(userInputs[0], userInputs[1], userInputs[2]));
-                    System.out.println("Contact added successfully\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Failed to added contact: " + e.getMessage() + "\n");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-
-            } else if (output.equals("2")) {
-                try {
-                    Contact contactToRemove = UserInterface.removeCommand(contactList);
-                    addressBook.removeContact(contactToRemove);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("The contact you are trying to remove doesn't exist\n");
-                }
-
-            } else if (output.equals("3")) {
-
-                System.out.println("Choose which contact you would like to Edit. Please user the numbers\n");
-
-                try {
-                    Contact contactToEdit = UserInterface.singleContact(contactList);
-                    String[] userInputs = UserInterface.editCommand(contactToEdit);
-                    addressBook.editContact(contactToEdit, userInputs[0], userInputs[1], userInputs[2]);
-                    System.out.println("Contact edited successfully\n ");
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Failed to edit contact: " + e.getMessage() + "\n");
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("The contact you are trying to edit doesn't exist\n");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            } else if (output.equals("4")) {
-                String userInput = UserInterface.searchCommand();
-                if (addressBook.searchContact(userInput).isEmpty()) {
-                    System.out.println("There are no contacts with this name\n");
-                } else {
-                    for (Contact contact : addressBook.searchContact(userInput)) {
-                        System.out.println(contact);
+                    try {
+                        addressBook.addContact(new Contact(userInputs[0], userInputs[1], userInputs[2]));
+                        System.out.println("Contact added successfully\n");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Failed to added contact: " + e.getMessage() + "\n");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
-                }
+                    break;
 
-            } else if (output.equals("5")) {
+                case "2":
+                    try {
+                        Contact contactToRemove = UserInterface.removeCommand(contactList);
+                        addressBook.removeContact(contactToRemove);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("The contact you are trying to remove doesn't exist\n");
+                    }
 
-                UserInterface.allContactsCommand(contactList);
-                System.out.println("\n");
+                    break;
 
-            } else if (output.equals("q")) {
-                UserInterface.exitProgram();
-                return;
-            } else {
-                System.out.println("Invalid command! Please Choose numbers (1-5)\n");
+                case "3":
+
+                    System.out.println("Choose which contact you would like to Edit. Please user the numbers\n");
+
+                    try {
+                        Contact contactToEdit = UserInterface.singleContact(contactList);
+                        String[] userInputsEdit = UserInterface.editCommand(contactToEdit);
+                        addressBook.editContact(contactToEdit, userInputsEdit[0], userInputsEdit[1], userInputsEdit[2]);
+                        System.out.println("Contact edited successfully\n ");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Failed to edit contact: " + e.getMessage() + "\n");
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("The contact you are trying to edit doesn't exist\n");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    break;
+                case "4":
+                    String userInput = UserInterface.searchCommand();
+                    if (addressBook.searchContact(userInput).isEmpty()) {
+                        System.out.println("There are no contacts with this name\n");
+                    } else {
+                        System.out.println("Here is your result");
+                        for (Contact contact : addressBook.searchContact(userInput)) {
+                            System.out.println(contact);
+                        }
+                        System.out.println("\n");
+                    }
+                    break;
+                case "5":
+
+                    UserInterface.allContactsCommand(contactList);
+                    System.out.println("\n");
+                    break;
+                case "q":
+                    UserInterface.exitProgram();
+                    return;
+                default:
+                    System.out.println("Invalid command! Please Choose numbers (1-5)\n");
+                    break;
 
             }
         }
