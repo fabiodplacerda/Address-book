@@ -70,7 +70,7 @@ public class AddressBookTest {
         void testDuplicateContactThrowsError() {
             // Arrange
             String testName = "Fabio";
-            String testPhoneNumber = "+4407812394921";
+            String testPhoneNumber = "07123456789";
             String testEmailAddress = "test@email.com";
 
             Contact mockContact = mock(Contact.class);
@@ -124,11 +124,11 @@ public class AddressBookTest {
         void testRemoveContactWhenContactListHasMultipleContacts() {
             // Arrange
             Contact mockContact1 = mock(Contact.class);
-            when(mockContact1.getPhoneNumber()).thenReturn("+44782121212");
+            when(mockContact1.getPhoneNumber()).thenReturn("07123456789");
             when(mockContact1.getEmailAddress()).thenReturn("email1@email.com");
 
             Contact mockContact2 = mock(Contact.class);
-            when(mockContact2.getPhoneNumber()).thenReturn("+44782121213");
+            when(mockContact2.getPhoneNumber()).thenReturn("07123456788");
             when(mockContact2.getEmailAddress()).thenReturn("email@email.com");
 
             testAddressBook.addContact(mockContact1);
@@ -221,7 +221,7 @@ public class AddressBookTest {
         void testEditContactWithValidInformationAndItSavesThatContact() {
             // Arrange
             String testName = "Fabio";
-            String newTestPhone = "+4407812345677";
+            String newTestPhone = "07123456789";
             String newEmailAddress = "test2@gmail.com";
             // Act
             testAddressBook.editContact(mockContact, testName, newTestPhone, newEmailAddress);
@@ -241,7 +241,7 @@ public class AddressBookTest {
         void testEditContactWithInvalidInformationAndItShouldThrowAError() {
             // Arrange
             String testName = null;
-            String testPhoneNumber = "+447911123456";
+            String testPhoneNumber = "07123456789";
             String testEmailAddress = "test@email.com";
             // Act
 
@@ -256,7 +256,7 @@ public class AddressBookTest {
             String testName = "Fabio";
             Contact mockContact2 = mock(Contact.class);
             when(mockContact2.getName()).thenReturn(testName);
-            when(mockContact2.getPhoneNumber()).thenReturn("+4407812345677");
+            when(mockContact2.getPhoneNumber()).thenReturn("07123456777");
             when(mockContact2.getName()).thenReturn("test2@gmail.com");
             testAddressBook.addContact(mockContact2);
             // Act

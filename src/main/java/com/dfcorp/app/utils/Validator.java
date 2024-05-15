@@ -18,7 +18,7 @@ public abstract class Validator {
     }
 
     public static boolean matchesPhoneNumberRegex (String phoneNumber){
-        return Pattern.matches("[\\+0-9\\s]+", phoneNumber);
+        return Pattern.matches("0[0-9\\s]+", phoneNumber);
     }
 
     public static boolean matchesEmailAddressRegex (String emailAddress){

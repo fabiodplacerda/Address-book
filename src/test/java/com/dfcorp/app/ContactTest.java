@@ -15,7 +15,7 @@ public class ContactTest {
         void testValuesSetByConstructor(){
             // Arrange
             String testName = "James";
-            String testPhoneNumber = "+447911123456";
+            String testPhoneNumber = "07123456789";
             String testEmail = "testEmail@gmail.com";
             // Act
             Contact testContact = new Contact(testName, testPhoneNumber, testEmail);
@@ -35,7 +35,7 @@ public class ContactTest {
         String testEmail;
         @BeforeEach
         void setUp (){
-            testPhoneNumber = "+447911123456";
+            testPhoneNumber = "07123456789";
             testEmail = "testEmail@gmail.com";
         }
 
@@ -132,7 +132,7 @@ public class ContactTest {
         @BeforeEach
         void setUp(){
             testName = "James";
-            testPhoneNumber = "+4407123456789";
+            testPhoneNumber = "07123456789";
         }
 
         @AfterEach
