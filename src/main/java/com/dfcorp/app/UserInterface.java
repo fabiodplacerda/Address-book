@@ -9,8 +9,7 @@ public abstract class UserInterface {
 
 
     public static String menu() {
-        System.out.println("What action would you like to perform? (Choose 1-5)\n1. Add a Contact\n2. Remove a Contact\n3. " +
-                "Edit a Contact\n4. Search a Contact by name\n5. Get all Contacts in this address book\nQ. Exit program");
+        System.out.println("What action would you like to perform? (Choose 1-5)\n1. Add a Contact\n2. Remove a Contact\n3. Edit a Contact\n4. Search a Contact by name\n5. Get all Contacts in this address book\nQ. Exit program");
         return scanner.nextLine().toLowerCase();
     }
 
@@ -56,7 +55,7 @@ public abstract class UserInterface {
     }
 
     public static void allContactsCommand(ArrayList<Contact> contactList) {
-        if (contactList.size() == 0) {
+        if (contactList.isEmpty()) {
             System.out.println("You have no contacts on your list...");
         } else {
             System.out.println("Here is you full contact list");
@@ -76,7 +75,7 @@ public abstract class UserInterface {
             System.out.println(i + ". " + contactList.get(i));
         }
         String contactIndex = scanner.nextLine();
-        return contactList.get(Integer.valueOf(contactIndex));
+        return contactList.get(Integer.parseInt(contactIndex));
 
     }
 
