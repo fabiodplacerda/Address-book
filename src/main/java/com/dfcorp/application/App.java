@@ -19,7 +19,7 @@ public class App {
 
         while (isRunning) {
             Message.print("What action would you like to perform? (Choose 1-5)\n1. Add a Contact\n2. Remove a Contact\n3. Edit a Contact\n4. Search a Contact by name\n5. Get all Contacts in this address book\nQ. Exit program");
-            String output = UserInputs.command(scanner.nextLine());
+            String output = UserInputs.getCommand(scanner.nextLine());
             switch (output) {
                 case "1":
 
@@ -39,7 +39,7 @@ public class App {
                     Message.print("Choose which contact you would like to remove. Please user the numbers");
                     try {
                         Message.printAllContacts(contactList);
-                        Contact contactToRemove = contactList.get(UserInputs.index(scanner));
+                        Contact contactToRemove = contactList.get(UserInputs.getIndex(scanner));
                         addressBook.removeContact(contactToRemove);
                         Message.print(contactToRemove + " has been removed from address book!");
                     } catch (IndexOutOfBoundsException e) {
@@ -53,7 +53,7 @@ public class App {
 
                     try {
                         Message.printContactSelection(contactList);
-                        Contact contactToEdit = contactList.get(UserInputs.index(scanner));
+                        Contact contactToEdit = contactList.get(UserInputs.getIndex(scanner));
                         Message.print("You are editing," + contactToEdit);
                         String[] userInputEdit = UserInputs.getContactDetails(scanner);
                         addressBook.editContact(contactToEdit, userInputEdit[0], userInputEdit[1], userInputEdit[2]);

@@ -39,26 +39,26 @@ public class UserInputsTest {
 
     @Test
     @DisplayName("test that checks that command method takes the user input an returns a lower case string")
-    void testThatChecksThatCommandMethodReturnsALowerCaseString() {
+    void testThatChecksThatGetCommandMethodReturnsALowerCaseString() {
         // Arrange
         String input = "Q";
         String expected = "q";
         // Act
-        String actual = UserInputs.command(input);
+        String actual = UserInputs.getCommand(input);
         // Assert
         assertEquals(expected, actual);
     }
 
     @Test
     @DisplayName("test that checks that the index method should return a int")
-    void testThatCheckThatIndexReturnsANumber() {
+    void testThatCheckThatGetIndexReturnsANumber() {
         // Arrange
         String input = "5";
         int expected = 5;
         when(scanner.nextLine()).thenReturn(input);
 
         // Act
-        int actual = UserInputs.index(scanner);
+        int actual = UserInputs.getIndex(scanner);
 
         // Assert
         assertEquals(expected, actual);

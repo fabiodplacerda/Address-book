@@ -5,7 +5,7 @@ import java.util.Scanner;
 public abstract class UserInputs {
 
 
-    public static String command(String command) {
+    public static String getCommand(String command) {
         return command.toLowerCase();
     }
 
@@ -25,7 +25,7 @@ public abstract class UserInputs {
 
     }
 
-    public static int index (Scanner scanner){
+    public static int getIndex(Scanner scanner){
         String contactIndex = scanner.nextLine();
         return Integer.parseInt(contactIndex);
     }
