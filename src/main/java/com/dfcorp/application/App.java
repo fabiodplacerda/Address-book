@@ -2,85 +2,86 @@ package com.dfcorp.application;
 
 import com.dfcorp.app.AddressBook;
 import com.dfcorp.app.Contact;
-import com.dfcorp.app.UserInterface;
+import com.dfcorp.app.UserInputs;
+import com.dfcorp.app.utils.Message;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
 
         AddressBook addressBook = new AddressBook();
         ArrayList<Contact> contactList = addressBook.getContactList();
+        Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
 
         while (isRunning) {
-            String output = UserInterface.menu();
+            Message.print("What action would you like to perform? (Choose 1-5)\n1. Add a Contact\n2. Remove a Contact\n3. Edit a Contact\n4. Search a Contact by name\n5. Get all Contacts in this address book\nQ. Exit program");
+            String output = UserInputs.command(scanner.nextLine());
             switch (output) {
                 case "1":
 
-                    String[] userInputs = UserInterface.addCommand();
+                    Message.print("You are adding a new contact please provide a valid Name, Phone number and Email Address");
+                    String[] userInputAdd = UserInputs.getContactDetails(scanner);
 
                     try {
-                        addressBook.addContact(new Contact(userInputs[0], userInputs[1], userInputs[2]));
-                        System.out.println("Contact added successfully\n");
+                        addressBook.addContact(new Contact(userInputAdd[0], userInputAdd[1], userInputAdd[2]));
+                        Message.print("Contact added successfully");
                     } catch (IllegalArgumentException e) {
-                        System.out.println("Failed to added contact: " + e.getMessage() + "\n");
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        Message.print("Failed to added contact: " + e.getMessage());
                     }
+
                     break;
 
                 case "2":
+                    Message.print("Choose which contact you would like to remove. Please user the numbers");
                     try {
-                        Contact contactToRemove = UserInterface.removeCommand(contactList);
+                        Message.printAllContacts(contactList);
+                        Contact contactToRemove = contactList.get(UserInputs.index(scanner));
                         addressBook.removeContact(contactToRemove);
+                        Message.print(contactToRemove + " has been removed from address book!");
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("The contact you are trying to remove doesn't exist\n");
+                        Message.print("The contact you are trying to remove doesn't exist");
                     }
-
                     break;
 
                 case "3":
 
-                    System.out.println("Choose which contact you would like to Edit. Please user the numbers\n");
+                    Message.print("Choose which contact you would like to Edit. Please user the numbers");
 
                     try {
-                        Contact contactToEdit = UserInterface.singleContact(contactList);
-                        String[] userInputsEdit = UserInterface.editCommand(contactToEdit);
-                        addressBook.editContact(contactToEdit, userInputsEdit[0], userInputsEdit[1], userInputsEdit[2]);
-                        System.out.println("Contact edited successfully\n ");
+                        Message.printContactSelection(contactList);
+                        Contact contactToEdit = contactList.get(UserInputs.index(scanner));
+                        Message.print("You are editing," + contactToEdit);
+                        String[] userInputEdit = UserInputs.getContactDetails(scanner);
+                        addressBook.editContact(contactToEdit, userInputEdit[0], userInputEdit[1], userInputEdit[2]);
+                        Message.print("Contact edited successfully");
+                    } catch (NumberFormatException e) {
+                        Message.print("Invalid input please provide a number");
                     } catch (IllegalArgumentException e) {
-                        System.out.println("Failed to edit contact: " + e.getMessage() + "\n");
+                        Message.print("Failed to edit contact: " + e.getMessage());
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("The contact you are trying to edit doesn't exist\n");
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        Message.print("The contact you are trying to edit doesn't exist");
                     }
 
                     break;
                 case "4":
-                    String userInput = UserInterface.searchCommand();
-                    if (addressBook.searchContact(userInput).isEmpty()) {
-                        System.out.println("There are no contacts with this name\n");
-                    } else {
-                        System.out.println("Here is your result");
-                        for (Contact contact : addressBook.searchContact(userInput)) {
-                            System.out.println(contact);
-                        }
-                        System.out.println("\n");
-                    }
+                    Message.print("You are searching for a contact please provide the name of that contact");
+                    String contactByName = scanner.nextLine();
+                    Message.printSearchResults(contactByName, addressBook);
                     break;
                 case "5":
 
-                    UserInterface.allContactsCommand(contactList);
-                    System.out.println("\n");
+                    Message.printAllContacts(contactList);
+                    Message.print("\n");
                     break;
                 case "q":
-                    UserInterface.exitProgram();
+                    Message.print("Exiting the program....");
                     return;
                 default:
-                    System.out.println("Invalid command! Please Choose numbers (1-5)\n");
+                    Message.print("Invalid command! Please Choose numbers (1-5)");
                     break;
 
             }
