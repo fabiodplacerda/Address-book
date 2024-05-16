@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class UserInterfaceTest {
+public class UserInputsTest {
 
     private Scanner scanner;
 
@@ -31,7 +31,7 @@ public class UserInterfaceTest {
         String[] expected = {testName, testPhoneNumber, testEmail};
 
         // Act
-        String[] actual = UserInterface.getContactDetails(scanner);
+        String[] actual = UserInputs.getContactDetails(scanner);
 
         // Assert
         assertArrayEquals(expected, actual);
@@ -44,7 +44,7 @@ public class UserInterfaceTest {
         String input = "Q";
         String expected = "q";
         // Act
-        String actual = UserInterface.command(input);
+        String actual = UserInputs.command(input);
         // Assert
         assertEquals(expected, actual);
     }
@@ -58,7 +58,7 @@ public class UserInterfaceTest {
         when(scanner.nextLine()).thenReturn(input);
 
         // Act
-        int actual = UserInterface.index(scanner);
+        int actual = UserInputs.index(scanner);
 
         // Assert
         assertEquals(expected, actual);

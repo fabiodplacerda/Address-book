@@ -1,9 +1,8 @@
 package com.dfcorp.app;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class UserInterface {
+public abstract class UserInputs {
 
 
     public static String command(String command) {
