@@ -22,7 +22,6 @@ public class App {
             String output = UserInputs.getCommand(scanner.nextLine());
             switch (output) {
                 case "1":
-
                     Message.print("You are adding a new contact please provide a valid Name, Phone number and Email Address");
                     String[] userInputAdd = UserInputs.getContactDetails(scanner);
 
@@ -34,7 +33,6 @@ public class App {
                     }
 
                     break;
-
                 case "2":
                     Message.print("Choose which contact you would like to remove. Please user the numbers");
                     try {
@@ -50,9 +48,9 @@ public class App {
                 case "3":
 
                     Message.print("Choose which contact you would like to Edit. Please user the numbers");
-
+                    Message.printContactSelection(contactList);
                     try {
-                        Message.printContactSelection(contactList);
+
                         Contact contactToEdit = contactList.get(UserInputs.getIndex(scanner));
                         Message.print("You are editing," + contactToEdit);
                         String[] userInputEdit = UserInputs.getContactDetails(scanner);
@@ -65,7 +63,6 @@ public class App {
                     } catch (IndexOutOfBoundsException e) {
                         Message.print("The contact you are trying to edit doesn't exist");
                     }
-
                     break;
                 case "4":
                     Message.print("You are searching for a contact please provide the name of that contact");
@@ -73,7 +70,6 @@ public class App {
                     Message.printSearchResults(contactByName, addressBook);
                     break;
                 case "5":
-
                     Message.printAllContacts(contactList);
                     Message.print("\n");
                     break;
