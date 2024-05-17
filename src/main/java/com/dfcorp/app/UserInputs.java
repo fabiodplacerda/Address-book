@@ -9,6 +9,7 @@ public abstract class UserInputs {
         return command.toLowerCase();
     }
 
+    // Method that gets user inputs in the console and returns a Array
     public static String[] getContactDetails(Scanner scanner) {
         System.out.println("Please provide the following details:");
 
@@ -25,6 +26,7 @@ public abstract class UserInputs {
 
     }
 
+    // Method that gets user input and returns a number
     public static int getIndex(Scanner scanner){
         String contactIndex = scanner.nextLine();
         return Integer.parseInt(contactIndex);
