@@ -8,9 +8,9 @@ public class Contact {
     private String emailAddress;
 
     public Contact(String name, String phoneNumber, String emailAddress) {
-        this.name = validateName(name);
-        this.phoneNumber = validatePhoneNumber(phoneNumber);
-        this.emailAddress = validateEmailAddress(emailAddress);
+        this.name = Validator.validateName(name);
+        this.phoneNumber = Validator.validatePhoneNumber(phoneNumber);
+        this.emailAddress = Validator.validateEmailAddress(emailAddress);
     }
 
     public String getName() {
@@ -18,7 +18,7 @@ public class Contact {
     }
 
     public void setName(String name) {
-        this.name = validateName(name);
+        this.name = Validator.validateName(name);
     }
 
     public String getPhoneNumber() {
@@ -26,7 +26,7 @@ public class Contact {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = validatePhoneNumber(phoneNumber);
+        this.phoneNumber = Validator.validatePhoneNumber(phoneNumber);
     }
 
     public String getEmailAddress() {
@@ -34,23 +34,7 @@ public class Contact {
     }
 
     public void setEmailAddress(String emailAddress) {
-        this.emailAddress = validateEmailAddress(emailAddress);
-    }
-
-    private String validateName (String name) {
-        if(Validator.isNull(name)|| Validator.isStringEmpty(name) || !Validator.matchesNameRegex(name)) throw new IllegalArgumentException("Invalid Name");
-        return name;
-    }
-
-    private String validatePhoneNumber (String phoneNumber){
-        if( Validator.isNull(phoneNumber)|| Validator.isStringEmpty(phoneNumber) || !Validator.matchesPhoneNumberRegex(phoneNumber)
-                || phoneNumber.length() > 15) throw new IllegalArgumentException("Invalid Phone Number");
-        return phoneNumber.trim();
-    }
-
-    private String validateEmailAddress (String emailAddress){
-        if(Validator.isNull(emailAddress) || Validator.isStringEmpty(emailAddress) ||!Validator.matchesEmailAddressRegex(emailAddress)) throw new IllegalArgumentException("Invalid Email Address");
-        return emailAddress;
+        this.emailAddress = Validator.validateEmailAddress(emailAddress);
     }
 
     @Override

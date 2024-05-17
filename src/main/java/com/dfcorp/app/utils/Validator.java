@@ -5,24 +5,40 @@ import com.dfcorp.app.Contact;
 import java.util.regex.Pattern;
 
 public abstract class Validator {
-    public static boolean isStringEmpty (String string){
+    private static boolean isStringEmpty(String string){
         return string.trim().isEmpty();
     }
 
-    public static boolean isNull ( String string){
+    private static boolean isNull(String string){
         return string == null;
     }
 
-    public static boolean matchesNameRegex (String name){
+    private static boolean matchesNameRegex(String name){
         return Pattern.matches("[a-zA-Z\\s]+", name);
     }
 
-    public static boolean matchesPhoneNumberRegex (String phoneNumber){
+    private static boolean matchesPhoneNumberRegex (String phoneNumber){
         return Pattern.matches("0[0-9\\s]+", phoneNumber);
     }
 
-    public static boolean matchesEmailAddressRegex (String emailAddress){
+    private static boolean matchesEmailAddressRegex (String emailAddress){
         return  Pattern.matches(".+@.+", emailAddress);
+    }
+
+    public static String validateName (String name) {
+        if(isNull(name)|| isStringEmpty(name) || !matchesNameRegex(name)) throw new IllegalArgumentException("Invalid Name");
+        return name;
+    }
+
+      public static String validatePhoneNumber (String phoneNumber){
+        if( isNull(phoneNumber)|| isStringEmpty(phoneNumber) || !matchesPhoneNumberRegex(phoneNumber)
+                || phoneNumber.length() > 11) throw new IllegalArgumentException("Invalid Phone Number");
+        return phoneNumber.trim();
+    }
+
+    public static String validateEmailAddress (String emailAddress){
+        if(isNull(emailAddress) || isStringEmpty(emailAddress) ||!matchesEmailAddressRegex(emailAddress)) throw new IllegalArgumentException("Invalid Email Address");
+        return emailAddress;
     }
 
     public static boolean isContactNull (Contact contact){
