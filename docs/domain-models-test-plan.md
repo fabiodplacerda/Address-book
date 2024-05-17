@@ -143,14 +143,17 @@ classDiagram
 
     class Validator {
         <<abstract>>
+        -NAME_REGEX$ String
+        -PHONE_NUMBER_REGEX$ String
+        -EMAIL_REGEX$ String
         -isStringEmpty(String string)$ boolean
         -isNull(String string)$ boolean
         -matchesNameRegex(String name)$ boolean
         -matchesPhoneNumberRegex(String name)$ boolean
         -matchesEmailAddressRegex(String name)$ boolean
-        +validateName(String name) void
-        +validatePhoneNumber(String phoneNumber) void
-        +validateEmailAddress(String email) void
+        +validateName(String name)$ void
+        +validatePhoneNumber(String phoneNumber)$ void
+        +validateEmailAddress(String email)$ void
         +isContactNull(Contact contact)$ boolean
     }
 
