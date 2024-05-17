@@ -23,9 +23,9 @@ As a user\
 I want to have only unique contact\
 So that I don't have any duplicate contacts
 
-| Object      | Properties                         | Messages                    | Output                |
-| ----------- | ---------------------------------- | --------------------------- | --------------------- |
-| AddressBook | -ArrayList < Contact > contactList | +searchContact(String name) | ArrayList < Contact > |
+| Object      | Properties                         | Messages                                              | Output  |
+| ----------- | ---------------------------------- | ----------------------------------------------------- | ------- |
+| AddressBook | -ArrayList < Contact > contactList | -isDuplicate(String phoneNumber, String emailAddress) | boolean |
 
 ### Test user story 2
 
@@ -70,7 +70,7 @@ So that I can update my contacts
 
 | Object      | Properties                         | Messages                                                                                  | Output            |
 | ----------- | ---------------------------------- | ----------------------------------------------------------------------------------------- | ----------------- |
-| AddressBook | -ArrayList < Contact > contactList | +editContact(Contact contact) <br/> +isDuplicate(String phoneNumber, String emailAddress) | void <br/>boolean |
+| AddressBook | -ArrayList < Contact > contactList | +editContact(Contact contact) <br/> -isDuplicate(String phoneNumber, String emailAddress) | void <br/>boolean |
 
 ### Tests user story 5
 
@@ -111,7 +111,6 @@ classDiagram
         +searchContact(String name) ArrayList < Contact >
         +getContactList() ArrayList < Contact >
         -isDuplicate(String phoneNumber, String emailAddress) boolean
-        -isDuplicate(Contact contact) boolean
     }
 
     class Contact {
@@ -124,9 +123,6 @@ classDiagram
         +setName(String name) void
         +setPhoneNumber(String phoneNumber) void
         +setEmailAddress(String email) void
-        -validateName(String name) void
-        -validatePhoneNumber(String phoneNumber) void
-        -validateEmailAddress(String email) void
         +toString() String
     }
 
@@ -147,15 +143,19 @@ classDiagram
 
     class Validator {
         <<abstract>>
-        +isStringEmpty(String string)$ boolean
-        +isNull(String string)$ boolean
-        +matchesNameRegex(String name)$ boolean
-        +matchesPhoneNumberRegex(String name)$ boolean
-        +matchesEmailAddressRegex(String name)$ boolean
+        -isStringEmpty(String string)$ boolean
+        -isNull(String string)$ boolean
+        -matchesNameRegex(String name)$ boolean
+        -matchesPhoneNumberRegex(String name)$ boolean
+        -matchesEmailAddressRegex(String name)$ boolean
+        +validateName(String name) void
+        +validatePhoneNumber(String phoneNumber) void
+        +validateEmailAddress(String email) void
         +isContactNull(Contact contact)$ boolean
     }
 
 ```
+
 ## Kanban board
 
 ![](img/kanban-board.png)
