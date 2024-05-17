@@ -8,11 +8,11 @@ public class ContactTest {
 
     @Nested
     @DisplayName("Contact Constructor Tests")
-    class ContactConstructorTests{
+    class ContactConstructorTests {
 
         @Test
         @DisplayName("test that checks that values are set by constructor")
-        void testValuesSetByConstructor(){
+        void testValuesSetByConstructor() {
             // Arrange
             String testName = "James";
             String testPhoneNumber = "07123456789";
@@ -30,18 +30,25 @@ public class ContactTest {
 
     @Nested
     @DisplayName("Contact Name Tests")
-    class ContactNameTests{
+    class ContactNameTests {
         String testPhoneNumber;
         String testEmail;
+
         @BeforeEach
-        void setUp (){
+        void setUp() {
             testPhoneNumber = "07123456789";
             testEmail = "testEmail@gmail.com";
         }
 
+        @AfterEach
+        void tearDown() {
+            testPhoneNumber = null;
+            testEmail = null;
+        }
+
         @Test
         @DisplayName("test that checks that when in the constructor the name is null it throws IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenNameIsNull(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenNameIsNull() {
             // Arrange
             String testName = null;
             // Act
@@ -51,7 +58,7 @@ public class ContactTest {
 
         @Test
         @DisplayName("test that checks that when in the constructor name is an empty string, it throws IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenNameIsEmptyString(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenNameIsEmptyString() {
             // Arrange
             String testName = " ";
             // Act
@@ -61,7 +68,7 @@ public class ContactTest {
 
         @Test
         @DisplayName("test that checks that name only should contain letters if it doesn't, it should throw IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenNameIsNotOnlyLetters(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenNameIsNotOnlyLetters() {
             // Arrange
             String testName = "Fabio1";
             // Act
@@ -72,18 +79,25 @@ public class ContactTest {
 
     @Nested
     @DisplayName("Contact phoneNumber Tests")
-    class ContactPhoneNumberTests{
+    class ContactPhoneNumberTests {
         String testName;
         String testEmail;
+
         @BeforeEach
-        void setUp (){
+        void setUp() {
             testName = "James";
             testEmail = "testEmail@gmail.com";
         }
 
+        @AfterEach
+        void tearDown() {
+            testName = null;
+            testEmail = null;
+        }
+
         @Test
         @DisplayName("test that checks that when in the constructor the phoneNumber is null it throws IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsNull(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsNull() {
             // Arrange
             String testPhoneNumber = null;
             // Act
@@ -93,7 +107,7 @@ public class ContactTest {
 
         @Test
         @DisplayName("test that checks that when in the constructor phoneNumber is an empty string, it throws IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsEmptyString(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsEmptyString() {
             // Arrange
             String testPhoneNumber = " ";
             // Act
@@ -103,7 +117,7 @@ public class ContactTest {
 
         @Test
         @DisplayName("test that checks that phoneNumber only should contain digits if it doesn't, it should throw IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsNotOnlyDigits(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberIsNotOnlyDigits() {
             // Arrange
             String testPhoneNumber = "o7123456789";
             // Act
@@ -113,7 +127,7 @@ public class ContactTest {
 
         @Test
         @DisplayName("test that checks that phoneNumber length shouldn't be longer then 15 if it is throws IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberLengthIsGreaterThen15(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenPhoneNumberLengthIsGreaterThen15() {
             // Arrange
             String testPhoneNumber = "0712345678921313131231";
             // Act
@@ -124,51 +138,51 @@ public class ContactTest {
 
     @Nested
     @DisplayName("Contact email tests")
-    class ContactEmailTests{
+    class ContactEmailTests {
 
         String testName;
         String testPhoneNumber;
 
         @BeforeEach
-        void setUp(){
+        void setUp() {
             testName = "James";
             testPhoneNumber = "07123456789";
         }
 
         @AfterEach
-        void tierDown(){
+        void tearDown() {
             testName = null;
             testPhoneNumber = null;
         }
 
         @Test
         @DisplayName("test that checks that when in the constructor the email is null it throws IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsNull(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsNull() {
             // Arrange
             String testEmail = null;
             // Act
             // Assert
-            assertThrows(IllegalArgumentException.class, () -> new Contact(testName,testPhoneNumber,testEmail));
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
         }
 
         @Test
         @DisplayName("test that checks that when in the constructor the email is empty string it throws IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsEmptyString(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsEmptyString() {
             // Arrange
             String testEmail = " ";
             // Act
             // Assert
-            assertThrows(IllegalArgumentException.class, () -> new Contact(testName,testPhoneNumber,testEmail));
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
         }
 
         @Test
         @DisplayName("test that checks that when in the constructor the email doesn't follow the standardize email string it IllegalArgumentException")
-        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsNotValid(){
+        void testConstructorThrowsIllegalArgumentExceptionWhenEmailIsNotValid() {
             // Arrange
             String testEmail = "testemail";
             // Act
             // Assert
-            assertThrows(IllegalArgumentException.class, () -> new Contact(testName,testPhoneNumber,testEmail));
+            assertThrows(IllegalArgumentException.class, () -> new Contact(testName, testPhoneNumber, testEmail));
         }
     }
 

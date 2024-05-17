@@ -1,5 +1,6 @@
 package com.dfcorp.app;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,13 @@ public class UserInputsTest {
     private Scanner scanner;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         scanner = Mockito.mock(Scanner.class);
+    }
+
+    @AfterEach
+    void tearDown(){
+        scanner = null;
     }
 
     @Test

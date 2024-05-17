@@ -17,7 +17,7 @@ public class AddressBookTest {
     }
 
     @AfterEach
-    void tierDown() {
+    void tearDown() {
         testAddressBook = null;
     }
 
@@ -101,7 +101,7 @@ public class AddressBookTest {
         }
 
         @AfterEach
-        void tierDown() {
+        void tearDown() {
             mockContact = null;
         }
 
@@ -210,7 +210,7 @@ public class AddressBookTest {
         }
 
         @AfterEach
-        void tierDown() {
+        void tearDown() {
             mockContact = null;
             testPhoneNumber = null;
             testEmailAddress = null;
