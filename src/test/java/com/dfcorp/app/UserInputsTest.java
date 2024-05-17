@@ -49,8 +49,9 @@ public class UserInputsTest {
         // Arrange
         String input = "Q";
         String expected = "q";
+        when(scanner.nextLine()).thenReturn(input);
         // Act
-        String actual = UserInputs.getCommand(input);
+        String actual = UserInputs.getCommand(scanner);
         // Assert
         assertEquals(expected, actual);
     }
@@ -65,6 +66,21 @@ public class UserInputsTest {
 
         // Act
         int actual = UserInputs.getIndex(scanner);
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test that checks that the getName method should returns a String")
+    void testThatCheckThatGetNameReturnsAString() {
+        // Arrange
+        String input = "Fabio";
+        String expected = "Fabio";
+        when(scanner.nextLine()).thenReturn(input);
+
+        // Act
+        String actual = UserInputs.getName(scanner);
 
         // Assert
         assertEquals(expected, actual);

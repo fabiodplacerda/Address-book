@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public abstract class UserInputs {
 
-
-    public static String getCommand(String command) {
+    // Method that gets an is
+    public static String getCommand(Scanner scanner) {
+        String command = scanner.nextLine();
         return command.toLowerCase();
     }
 
@@ -30,6 +31,11 @@ public abstract class UserInputs {
     public static int getIndex(Scanner scanner){
         String contactIndex = scanner.nextLine();
         return Integer.parseInt(contactIndex);
+    }
+
+    public static String getName (Scanner scanner){
+        String name = scanner.nextLine();
+        return name;
     }
 
 }
