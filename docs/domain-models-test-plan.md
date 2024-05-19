@@ -6,11 +6,6 @@ As a user\
 I want to be able to add a contact to my address book\
 So that I can store my contacts
 
-| Object      | Properties                         | Messages                        | Output  |
-| ----------- | ---------------------------------- | ------------------------------- | ------- |
-| AddressBook | -ArrayList < Contact > contactList | +addContact(Contact contact)    | void    |
-| Validator   |                                    | +isContactNull(Contact contact) | boolean |
-
 ### Tests user story 1
 
 - **Test 1.1:** Add a Contact and see that the ArrayList size its increased by 1.
@@ -23,10 +18,6 @@ As a user\
 I want to have only unique contact\
 So that I don't have any duplicate contacts
 
-| Object      | Properties                         | Messages                                              | Output  |
-| ----------- | ---------------------------------- | ----------------------------------------------------- | ------- |
-| AddressBook | -ArrayList < Contact > contactList | -isDuplicate(String phoneNumber, String emailAddress) | boolean |
-
 ### Test user story 2
 
 - **Test 2.1:** Duplicate contact shouldn't be added to the address book.
@@ -37,14 +28,10 @@ As a user\
 I want to be able to remove a contact from my address book\
 So that I can manage my contacts
 
-| Object      | Properties                         | Messages                        | Output |
-| ----------- | ---------------------------------- | ------------------------------- | ------ |
-| AddressBook | -ArrayList < Contact > contactList | +removeContact(Contact contact) | void   |
-
 ### Tests user story 3
 
 - **Test 3.1:** Remove a Contact and see that the ArrayList size decreases by 1.
-- **Test 3.2:** Remove a Contact and see its actual remove from the ArrayList.
+- **Test 3.2:** Remove a Contact and see its remove from the ArrayList.
 - **Test 3.3:** If the contact doesn't exist in the ArrayList, nothing should happen.
 
 ## User Story 4: Search Contact
@@ -52,10 +39,6 @@ So that I can manage my contacts
 As a user\
 I want to be able to search for a contact by name\
 So that I can select a specific person in my address book
-
-| Object      | Properties                         | Messages                    | Output                |
-| ----------- | ---------------------------------- | --------------------------- | --------------------- |
-| AddressBook | -ArrayList < Contact > contactList | +searchContact(String name) | ArrayList < Contact > |
 
 ### Tests user story 4
 
@@ -67,10 +50,6 @@ So that I can select a specific person in my address book
 As a user\
 I want to be able to edit a contact's details\
 So that I can update my contacts
-
-| Object      | Properties                         | Messages                                                                                  | Output            |
-| ----------- | ---------------------------------- | ----------------------------------------------------------------------------------------- | ----------------- |
-| AddressBook | -ArrayList < Contact > contactList | +editContact(Contact contact) <br/> -isDuplicate(String phoneNumber, String emailAddress) | void <br/>boolean |
 
 ### Tests user story 5
 
@@ -84,9 +63,6 @@ As a user\
 I want to be able to view all my contacts in the address book\
 So that I can see all of my contacts that I have stored
 
-| Object      | Properties                         | Messages          | Output                            |
-| ----------- | ---------------------------------- | ----------------- | --------------------------------- |
-| AddressBook | -ArrayList < Contact > contactList | +getContactList() | ArrayList < Contact > contactList |
 
 ### Test user story 6
 
@@ -98,6 +74,11 @@ So that I can see all of my contacts that I have stored
 As a user\
 I want to be able to interact with this application by using the console interface\
 So that I can use the application
+
+ - **Test 7.1:** Collect user inputs for name, phone number, and email, then return an array containing these inputs.
+ - **Test 7.2:** Collect user input from the menu and return it in lowercase.
+ - **Test 7.3:** Collect user input for index and return it as an int.
+ - **Test 7.4:** Collect user input for name and return that name.
 
 ## Class Diagram
 
