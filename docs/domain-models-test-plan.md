@@ -80,6 +80,15 @@ So that I can use the application
  - **Test 7.3:** Collect user input for index and return it as an int.
  - **Test 7.4:** Collect user input for name and return that name.
 
+### Test Plan for Contact class:
+ - **Test 8.1:** When creating a new instance of the Contact class, the values are set by the constructor.
+ - **Test 8.2:** Check if one of the values is null, if it is throw an error.
+ - **Test 8.3:** Check if one of the values is an empty string, if it is throw an error.
+ - **Test 8.4:** Check that Name should be only letters, if not throw error.
+ - **Test 8.5:** Check that Phone number should be only numbers, and should start with 0, if not throw error.
+ - **Test 8.6:** Check that Email address should follow the standardize email string if not throw error.
+
+
 ## Class Diagram
 
 ```mermaid
@@ -87,7 +96,7 @@ classDiagram
     class AddressBook {
         -contactList ArrayList < Contact >
         +addContact(Contact contact) void
-        +removeContact(Contact contact) Void
+        +removeContact(Contact contact) void
         +editContact(Contact contact, String newName, String newPhoneNumber, String newEmailAddress) void
         +searchContact(String name) ArrayList < Contact >
         +getContactList() ArrayList < Contact >
@@ -112,6 +121,7 @@ classDiagram
         +getCommand(String command)$ String
         +getContactDetails(Scanner scanner)$ String[]
         +getIndex(Scanner scanner)$ int
+        +getName(Scanner scanner)$ String
     }
     class Message {
         <<abstract>>
@@ -132,9 +142,9 @@ classDiagram
         -matchesNameRegex(String name)$ boolean
         -matchesPhoneNumberRegex(String name)$ boolean
         -matchesEmailAddressRegex(String name)$ boolean
-        +validateName(String name)$ void
-        +validatePhoneNumber(String phoneNumber)$ void
-        +validateEmailAddress(String email)$ void
+        +validateName(String name)$ String
+        +validatePhoneNumber(String phoneNumber)$ String
+        +validateEmailAddress(String email)$ String
         +isContactNull(Contact contact)$ boolean
     }
 
