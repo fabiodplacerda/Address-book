@@ -177,7 +177,7 @@ public class AddressBookTest {
         }
 
         @Test
-        @DisplayName("test that checks that when a Contact its searched by name if it exist it should return that contact")
+        @DisplayName("test that checks that when a Contact its searched by name if it doesn't exist it should return a empty ArrayList")
         void testSearchContactByNameAndIfNoMatchReturnsAnEmptyArrayList() {
             // Arrange
             ArrayList<Contact> expected = new ArrayList<>();
@@ -237,7 +237,7 @@ public class AddressBookTest {
         }
 
         @Test
-        @DisplayName("test that checks that when you edit a contact with invalid information it changes that contact")
+        @DisplayName("test that checks that when you edit a contact with invalid information it  doesn't changes that contact")
         void testEditContactWithInvalidInformationAndItShouldThrowAError() {
             // Arrange
             String testName = null;
