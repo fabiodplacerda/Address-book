@@ -6,11 +6,11 @@ to easily manage their connections. It's a simple method for keeping an organize
 
 ## The Software will:
 
-- The ability for users to add new contacts to their address book.
-- Options to remove existing contacts from the address book.
-- A feature for editing contact details as needed.
-- A search function for finding contacts by name.
-- A feature that lets users view their entire contact list at once.
+- Allow users to add new contacts to their address book.
+- Allow users to remove existing contacts from the address book.
+- Enable users to edit contact details as needed.
+- Help users search contacts by name.
+- Allow users to view their entire contact list at once.
 
 ## How will the software benefit the end user?
 
@@ -27,4 +27,4 @@ of losing important information.
 enjoyable user experience. Customers value the convenience of having their contacts organized and accessible, 
 which can lead to increased satisfaction and brand loyalty.
 - **Increased User Engagement:** The app's features, such as contact search and duplicate protection, encourage users to 
-interact with the software on a frequent basis, resulting in a more active user base.
+interact with the software frequently, resulting in a more active user base.
