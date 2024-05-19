@@ -41,7 +41,9 @@ public class App {
                         Contact contactToRemove = contactList.get(UserInputs.getIndex(scanner));
                         addressBook.removeContact(contactToRemove);
                         Message.print(contactToRemove + " has been removed from address book!");
-                    } catch (IndexOutOfBoundsException e) {
+                    } catch (NumberFormatException e) {
+                        Message.print("Invalid input please provide a number.");
+                    }catch (IndexOutOfBoundsException e) {
                         Message.print("The contact you are trying to remove doesn't exist");
                     }
                     break;
