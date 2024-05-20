@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public abstract class UserInputs {
 
-    // Method that gets an is
+    // Method that gets a command for user and returns it Lowercase
     public static String getCommand(Scanner scanner) {
         String command = scanner.nextLine();
         return command.toLowerCase();
@@ -33,6 +33,7 @@ public abstract class UserInputs {
         return Integer.parseInt(contactIndex);
     }
 
+    // Method that gets a name from the user input
     public static String getName (Scanner scanner){
         String name = scanner.nextLine();
         return name;
