@@ -13,6 +13,11 @@ public class App {
 
         AddressBook addressBook = new AddressBook();
         ArrayList<Contact> contactList = addressBook.getContactList();
+
+        addressBook.addContact(new Contact("Fabio", "07821313131", "fabio@gmail.com"));
+        addressBook.addContact(new Contact("John Smith", "078442132", "johnSmith@email.com"));
+        addressBook.addContact(new Contact("Maria Smith", "0777364212", "m.smith@live.co.uk"));
+
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
